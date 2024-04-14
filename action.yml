@@ -1,24 +1,26 @@
-name: 'The name of your action here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Retry Run Action'
+description: 'retry run script action'
+author: 'https://github.com/srz-zumix'
 
-# Add your action's branding here. This will appear on the GitHub Marketplace.
-branding:
-  icon: 'heart'
-  color: 'red'
-
-# Define your inputs here.
 inputs:
-  milliseconds:
-    description: 'Your input description here'
+  retry:
+    description: 'retry count'
+    default: 3
+  run:
+    description: 'run script text'
     required: true
-    default: '1000'
-
-# Define your outputs here.
-outputs:
-  time:
-    description: 'Your output description here'
+  shell:
+    # Default : bash -e {0}
+    # bash    : bash --noprofile --norc -eo pipefail {0}
+    # custom  : e.g. `bash -l -ex {0}`
+    # see https://docs.github.com/ja/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsshell
+    description: 'custom shell command'
+    default: ""
 
 runs:
   using: node20
-  main: dist/index.js
+  main: dist/main/index.js
+
+branding:
+  icon: 'terminal'
+  color: 'blue'

@@ -1,24 +1,26 @@
 {
-  "name": "typescript-action",
-  "description": "GitHub Actions TypeScript template",
+  "name": "retry-run-action",
+  "description": "GitHub Actions retry run action",
   "version": "0.0.0",
   "author": "",
   "private": true,
-  "homepage": "https://github.com/actions/typescript-action",
+  "homepage": "https://github.com/srz-zumix/retry-run-action",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/typescript-action.git"
+    "url": "git+https://github.com/srz-zumix/retry-run-action.git"
   },
   "bugs": {
-    "url": "https://github.com/actions/typescript-action/issues"
+    "url": "https://github.com/srz-zumix/retry-run-action/issues"
   },
   "keywords": [
     "actions",
     "node",
-    "setup"
+    "retry",
+    "shell",
+    "command"
   ],
   "exports": {
-    ".": "./dist/index.js"
+    ".": "./dist/main/index.js"
   },
   "engines": {
     "node": ">=20"
@@ -30,7 +32,7 @@
     "format:write": "npx prettier --write .",
     "format:check": "npx prettier --check .",
     "lint": "npx eslint . -c ./.github/linters/.eslintrc.yml",
-    "package": "npx ncc build src/index.ts -o dist --source-map --license licenses.txt",
+    "package": "npx ncc build src/main/index.ts -o dist --source-map --license licenses.txt",
     "package:watch": "npm run package -- --watch",
     "test": "npx jest",
     "all": "npm run format:write && npm run lint && npm run test && npm run coverage && npm run package"
@@ -66,7 +68,10 @@
     ]
   },
   "dependencies": {
-    "@actions/core": "^1.10.1"
+    "@actions/core": "^1.10.1",
+    "@actions/exec": "^1.1.0",
+    "@actions/io": "^1.0.2",
+    "@types/uuid": "^9.0.8"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
