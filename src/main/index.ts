@@ -48,7 +48,10 @@ function resolveExtension(command: string): string {
 }
 
 async function runOnce(
-  commandPath: string, commandArgs: string[], options: exec.ExecOptions, attempt: number
+  commandPath: string,
+  commandArgs: string[],
+  options: exec.ExecOptions,
+  attempt: number
 ): Promise<void> {
   options.env = {
     ...process.env,
@@ -79,7 +82,7 @@ async function run(): Promise<void> {
     const options: exec.ExecOptions = {}
     options.windowsVerbatimArguments = command === 'cmd'
 
-    let attempt: number = 1
+    let attempt = 1
     for (let i = 0; i < retry; i++, attempt++) {
       try {
         options.env = {
