@@ -26225,8 +26225,16 @@ function resolveExtension(command) {
     }
     return 'sh';
 }
+async function runOnce(commandPath, commandArgs, options, attempt) {
+    options.env = {
+        ...process.env,
+        RETRY_RUN_ATTEMPT: attempt.toString()
+    };
+    await exec.exec(`"${commandPath}"`, commandArgs, options);
+}
 async function run() {
     try {
+        const retry = parseInt(core.getInput('retry'), 10);
         const content = core.getInput('run', { required: true });
         const shellCommands = await resolveShell();
         const command = shellCommands[0];
@@ -26242,7 +26250,23 @@ async function run() {
             .map(item => item.replace('{0}', scriptPath));
         const options = {};
         options.windowsVerbatimArguments = command === 'cmd';
-        await exec.exec(`"${commandPath}"`, commandArgs, options);
+        var attempt = 1;
+        for (let i = 0; i < retry; i++, attempt++) {
+            try {
+                options.env = {
+                    ...process.env,
+                    RETRY_RUN_ATTEMPT: attempt.toString()
+                };
+                await runOnce(commandPath, commandArgs, options, attempt);
+                return;
+            }
+            catch (error) {
+                // Fail the workflow run if an error occurs
+                if (error instanceof Error)
+                    core.warning(error.message);
+            }
+        }
+        await runOnce(commandPath, commandArgs, options, attempt);
     }
     catch (error) {
         // Fail the workflow run if an error occurs

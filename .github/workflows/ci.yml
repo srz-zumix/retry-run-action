@@ -62,6 +62,6 @@ jobs:
             echo "count=${RETRY_RUN_ATTEMPT}" >> "${GITHUB_OUTPUT}"
             test "${RETRY_RUN_ATTEMPT}" == 5
 
-      # - name: Print Output
-      #   id: output
-      #   run: echo "${{ steps.test-action.outputs.count }}"
+      - name: Print Output
+        id: output
+        run: echo "${{ toJson(steps.test-action.outputs) }}"
