@@ -26250,7 +26250,7 @@ async function run() {
             .map(item => item.replace('{0}', scriptPath));
         const options = {};
         options.windowsVerbatimArguments = command === 'cmd';
-        var attempt = 1;
+        let attempt = 1;
         for (let i = 0; i < retry; i++, attempt++) {
             try {
                 options.env = {

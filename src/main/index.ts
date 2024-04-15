@@ -47,17 +47,19 @@ function resolveExtension(command: string): string {
   return 'sh'
 }
 
-async function runOnce(commandPath: string, commandArgs: string[], options: exec.ExecOptions, attempt: number): Promise<void> {
+async function runOnce(
+  commandPath: string, commandArgs: string[], options: exec.ExecOptions, attempt: number
+): Promise<void> {
   options.env = {
     ...process.env,
     RETRY_RUN_ATTEMPT: attempt.toString()
-  };
+  }
   await exec.exec(`"${commandPath}"`, commandArgs, options)
 }
 
 async function run(): Promise<void> {
   try {
-    const retry: number = parseInt(core.getInput('retry'), 10);
+    const retry: number = parseInt(core.getInput('retry'), 10)
     const content: string = core.getInput('run', { required: true })
     const shellCommands: string[] = await resolveShell()
     const command = shellCommands[0]
@@ -77,13 +79,13 @@ async function run(): Promise<void> {
     const options: exec.ExecOptions = {}
     options.windowsVerbatimArguments = command === 'cmd'
 
-    var attempt: number = 1
+    let attempt: number = 1
     for (let i = 0; i < retry; i++, attempt++) {
       try {
         options.env = {
           ...process.env,
           RETRY_RUN_ATTEMPT: attempt.toString()
-        };
+        }
         await runOnce(commandPath, commandArgs, options, attempt)
         return
       } catch (error) {
