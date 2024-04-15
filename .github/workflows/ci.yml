@@ -59,7 +59,7 @@ jobs:
         with:
           retry: 5
           run: |
-            echo "count=${RETRY_RUN_ATTEMPT}" >> "${GITHUB_OUTPUT}"
+            echo "count=${RETRY_RUN_ATTEMPT}" | tee -a "${GITHUB_OUTPUT}"
             test "${RETRY_RUN_ATTEMPT}" == 5
 
       - name: Print Output
