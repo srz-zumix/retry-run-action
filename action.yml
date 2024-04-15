@@ -1,6 +1,6 @@
 name: 'Retry Run Action'
 description: 'retry run script action'
-author: 'https://github.com/srz-zumix'
+author: srz-zumix
 
 inputs:
   retry:
@@ -15,7 +15,7 @@ inputs:
     # custom  : e.g. `bash -l -ex {0}`
     # see https://docs.github.com/ja/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsshell
     description: 'custom shell command'
-    default: ""
+    default: ''
 
 runs:
   using: node20
