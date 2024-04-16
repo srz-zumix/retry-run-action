@@ -96,7 +96,7 @@ async function run(): Promise<void> {
         // Fail the workflow run if an error occurs
         if (error instanceof Error) core.warning(error.message)
         if (interval > 0) {
-          await new Promise(resolve => setTimeout(resolve, interval * 1000));
+          await new Promise(resolve => setTimeout(resolve, interval * 1000))
         }
       }
     }
