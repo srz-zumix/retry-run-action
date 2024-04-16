@@ -80,5 +80,5 @@ jobs:
       - name: Test
         run: |
           test "${{ steps.test-action.outputs.count }}" == 5
-          test "${{ steps.test-action-fail.outputs.count }}" == 4
+          test "${{ steps.test-action-fail.outputs.count }}" == 3
           test "${{ steps.test-action-fail.outcome }}" == "failure"

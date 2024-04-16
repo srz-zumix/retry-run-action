@@ -63,6 +63,7 @@ async function runOnce(
 async function run(): Promise<void> {
   try {
     const retry: number = parseInt(core.getInput('retry'), 10)
+    const interval: number = parseInt(core.getInput('interval'), 10)
     const content: string = core.getInput('run', { required: true })
     const shellCommands: string[] = await resolveShell()
     const command = shellCommands[0]
@@ -83,7 +84,7 @@ async function run(): Promise<void> {
     options.windowsVerbatimArguments = command === 'cmd'
 
     let attempt = 1
-    for (let i = 0; i < retry; i++, attempt++) {
+    for (let i = 1; i < retry; i++, attempt++) {
       try {
         options.env = {
           ...process.env,
@@ -94,6 +95,9 @@ async function run(): Promise<void> {
       } catch (error) {
         // Fail the workflow run if an error occurs
         if (error instanceof Error) core.warning(error.message)
+        if (interval > 0) {
+          await new Promise(resolve => setTimeout(resolve, interval * 1000));
+        }
       }
     }
     await runOnce(commandPath, commandArgs, options, attempt)

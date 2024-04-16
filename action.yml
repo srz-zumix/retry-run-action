@@ -9,6 +9,9 @@ inputs:
   run:
     description: 'run script text'
     required: true
+  interval:
+    description: 'interval seconds'
+    default: 5
   shell:
     # Default : bash -e {0}
     # bash    : bash --noprofile --norc -eo pipefail {0}
