@@ -26254,10 +26254,6 @@ async function run() {
         let attempt = 1;
         for (let i = 1; i < retry; i++, attempt++) {
             try {
-                options.env = {
-                    ...process.env,
-                    RETRY_RUN_ATTEMPT: attempt.toString()
-                };
                 await runOnce(commandPath, commandArgs, options, attempt);
                 return;
             }
