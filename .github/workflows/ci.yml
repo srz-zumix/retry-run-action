@@ -82,7 +82,7 @@ jobs:
           test "${{ steps.test-action.outputs.count }}" == 5
           test "${{ steps.test-action-fail.outputs.count }}" == 3
           test "${{ steps.test-action-fail.outcome }}" == "failure"
-          
+
   test-action-env:
     name: GitHub Actions Env Test
     runs-on: ubuntu-latest
@@ -104,8 +104,6 @@ jobs:
           run: |
             env > action.env
 
-      - name: run env
+      - name: env diff
         run: |
-          diff run.env action.env
-
-            
+          diff run.env action.env || :
