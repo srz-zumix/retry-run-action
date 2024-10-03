@@ -60,7 +60,7 @@ jobs:
           retry: 1
           run: |
             env
-            
+
       - name: Test Local Action
         id: test-action
         uses: ./
