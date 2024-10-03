@@ -54,14 +54,6 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Test Local Action
-        id: test-action-once
-        uses: ./
-        with:
-          retry: 1
-          run: |
-            env
-
-      - name: Test Local Action
         id: test-action
         uses: ./
         with:
@@ -91,3 +83,29 @@ jobs:
           test "${{ steps.test-action-fail.outputs.count }}" == 3
           test "${{ steps.test-action-fail.outcome }}" == "failure"
           
+  test-action-env:
+    name: GitHub Actions Env Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        id: checkout
+        uses: actions/checkout@v4
+
+      - name: run env
+        run: |
+          env > run.env
+
+      - name: Test Local Action
+        id: test-action-once
+        uses: ./
+        with:
+          retry: 1
+          run: |
+            env > action.env
+
+      - name: run env
+        run: |
+          diff run.env action.env
+
+            
