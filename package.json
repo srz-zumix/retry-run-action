@@ -71,12 +71,13 @@
     "@actions/core": "^1.11.1",
     "@actions/exec": "^1.1.0",
     "@actions/io": "^1.0.2",
-    "@types/uuid": "^10.0.0"
+    "uuid": "^10.0.0"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
     "@types/jest": "^29.5.13",
     "@types/node": "^22.7.4",
+    "@types/uuid": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^8.8.0",
     "@typescript-eslint/parser": "^8.8.0",
     "@vercel/ncc": "^0.38.2",
