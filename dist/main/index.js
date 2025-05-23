@@ -1,5 +1,6 @@
-import require$$0 from 'os';
-import require$$0$1 from 'crypto';
+import require$$0$1 from 'os';
+import * as require$$0 from 'crypto';
+import require$$0__default from 'crypto';
 import require$$1$1, { promises } from 'fs';
 import * as require$$1 from 'path';
 import require$$1__default from 'path';
@@ -28,7 +29,6 @@ import require$$6 from 'string_decoder';
 import require$$0$9 from 'diagnostics_channel';
 import require$$2$2 from 'child_process';
 import require$$6$1 from 'timers';
-import { v4 } from 'uuid';
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -115,7 +115,7 @@ function requireCommand () {
 	};
 	Object.defineProperty(command, "__esModule", { value: true });
 	command.issue = command.issueCommand = void 0;
-	const os = __importStar(require$$0);
+	const os = __importStar(require$$0$1);
 	const utils_1 = requireUtils$1();
 	/**
 	 * Commands
@@ -223,9 +223,9 @@ function requireFileCommand () {
 	fileCommand.prepareKeyValueMessage = fileCommand.issueFileCommand = void 0;
 	// We use any as a valid input type
 	/* eslint-disable @typescript-eslint/no-explicit-any */
-	const crypto = __importStar(require$$0$1);
+	const crypto = __importStar(require$$0__default);
 	const fs = __importStar(require$$1$1);
-	const os = __importStar(require$$0);
+	const os = __importStar(require$$0$1);
 	const utils_1 = requireUtils$1();
 	function issueFileCommand(command, message) {
 	    const filePath = process.env[`GITHUB_${command}`];
@@ -25192,7 +25192,7 @@ function requireSummary () {
 		};
 		Object.defineProperty(exports, "__esModule", { value: true });
 		exports.summary = exports.markdownSummary = exports.SUMMARY_DOCS_URL = exports.SUMMARY_ENV_VAR = void 0;
-		const os_1 = require$$0;
+		const os_1 = require$$0$1;
 		const fs_1 = require$$1$1;
 		const { access, appendFile, writeFile } = fs_1.promises;
 		exports.SUMMARY_ENV_VAR = 'GITHUB_STEP_SUMMARY';
@@ -26081,7 +26081,7 @@ function requireToolrunner () {
 	};
 	Object.defineProperty(toolrunner, "__esModule", { value: true });
 	toolrunner.argStringToArray = toolrunner.ToolRunner = void 0;
-	const os = __importStar(require$$0);
+	const os = __importStar(require$$0$1);
 	const events = __importStar(require$$4);
 	const child = __importStar(require$$2$2);
 	const path = __importStar(require$$1__default);
@@ -26824,7 +26824,7 @@ function requirePlatform () {
 		};
 		Object.defineProperty(exports, "__esModule", { value: true });
 		exports.getDetails = exports.isLinux = exports.isMacOS = exports.isWindows = exports.arch = exports.platform = void 0;
-		const os_1 = __importDefault(require$$0);
+		const os_1 = __importDefault(require$$0$1);
 		const exec = __importStar(requireExec());
 		const getWindowsInfo = () => __awaiter(void 0, void 0, void 0, function* () {
 		    const { stdout: version } = yield exec.getExecOutput('powershell -command "(Get-CimInstance -ClassName Win32_OperatingSystem).Version"', undefined, {
@@ -26927,7 +26927,7 @@ function requireCore () {
 		const command_1 = requireCommand();
 		const file_command_1 = requireFileCommand();
 		const utils_1 = requireUtils$1();
-		const os = __importStar(require$$0);
+		const os = __importStar(require$$0$1);
 		const path = __importStar(require$$1__default);
 		const oidc_utils_1 = requireOidcUtils();
 		/**
@@ -27299,7 +27299,7 @@ async function run() {
         const commandPath = await ioExports.which(command, true);
         const runnerTempPath = process.env.RUNNER_TEMP;
         const extension = resolveExtension(command);
-        const uniqueId = v4();
+        const uniqueId = require$$0.randomUUID();
         const scriptFileName = `retry-run-action-${uniqueId}.${extension}`;
         const scriptPath = require$$1.join(runnerTempPath, scriptFileName);
         await promises.writeFile(scriptPath, content);
