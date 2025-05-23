@@ -78,7 +78,7 @@ async function run(): Promise<void> {
 
     const commandArgs = shellCommands
       .slice(1)
-      .map(item => item.replace('{0}', scriptPath))
+      .map((item) => item.replace('{0}', scriptPath))
 
     const options: exec.ExecOptions = {}
     options.windowsVerbatimArguments = command === 'cmd'
@@ -92,7 +92,7 @@ async function run(): Promise<void> {
         // Fail the workflow run if an error occurs
         if (error instanceof Error) core.warning(error.message)
         if (interval > 0) {
-          await new Promise(resolve => setTimeout(resolve, interval * 1000))
+          await new Promise((resolve) => setTimeout(resolve, interval * 1000))
         }
       }
     }
