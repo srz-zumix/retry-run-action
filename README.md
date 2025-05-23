@@ -39,5 +39,5 @@ see [GitHub Actions shell][]
 
 Output to [GITHUB_OUTPUT][] is available.
 
-[GITHUB_OUTPUT]:https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-an-output-parameter
-[GitHub Actions shell]:https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsshell
+[GITHUB_OUTPUT]: https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#setting-an-output-parameter
+[GitHub Actions shell]: https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idstepsshell
