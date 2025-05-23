@@ -27305,7 +27305,7 @@ async function run() {
         await promises.writeFile(scriptPath, content);
         const commandArgs = shellCommands
             .slice(1)
-            .map(item => item.replace('{0}', scriptPath));
+            .map((item) => item.replace('{0}', scriptPath));
         const options = {};
         options.windowsVerbatimArguments = command === 'cmd';
         let attempt = 1;
@@ -27319,7 +27319,7 @@ async function run() {
                 if (error instanceof Error)
                     coreExports.warning(error.message);
                 if (interval > 0) {
-                    await new Promise(resolve => setTimeout(resolve, interval * 1000));
+                    await new Promise((resolve) => setTimeout(resolve, interval * 1000));
                 }
             }
         }
