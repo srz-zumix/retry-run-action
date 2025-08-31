@@ -20,6 +20,8 @@ jobs:
       - name: Checkout
         id: checkout
         uses: actions/checkout@v5
+        with:
+          persist-credentials: false
 
       - name: Setup Node.js
         id: setup-node
@@ -52,6 +54,8 @@ jobs:
       - name: Checkout
         id: checkout
         uses: actions/checkout@v5
+        with:
+          persist-credentials: false
 
       - name: Test Local Action
         id: test-action
@@ -74,14 +78,20 @@ jobs:
 
       - name: Print Output
         id: output
+        env:
+          RETRY_RUN_OUTPUT_JSON: ${{ toJson(steps.test-action.outputs) }}
         run: |
-          echo "${{ toJson(steps.test-action.outputs) }}"
+          echo "${RETRY_RUN_OUTPUT_JSON}"
 
       - name: Test
+        env:
+          RETRY_RUN_COUNT: ${{ steps.test-action.outputs.count }}
+          RETRY_RUN_FAIL_COUNT: ${{ steps.test-action-fail.outputs.count }}
+          RETRY_RUN_FAIL_OUTCOME: ${{ steps.test-action-fail.outcome }}
         run: |
-          test "${{ steps.test-action.outputs.count }}" == 5
-          test "${{ steps.test-action-fail.outputs.count }}" == 3
-          test "${{ steps.test-action-fail.outcome }}" == "failure"
+          test "${RETRY_RUN_COUNT}" == 5
+          test "${RETRY_RUN_FAIL_COUNT}" == 3
+          test "${RETRY_RUN_FAIL_OUTCOME}" == "failure"
 
   test-action-env:
     name: GitHub Actions Env Test
@@ -91,6 +101,8 @@ jobs:
       - name: Checkout
         id: checkout
         uses: actions/checkout@v5
+        with:
+          persist-credentials: false
 
       - name: run env
         run: |
