@@ -40,7 +40,8 @@ function resolveExtension(command: string): string {
     python: 'py',
     cmd: 'cmd',
     pwsh: 'ps1',
-    powershell: 'ps1'
+    powershell: 'ps1',
+    dotnet: 'cs'
   }
   if (command in commandExtensions) {
     return commandExtensions[command]
