@@ -13,7 +13,7 @@ on:
       tag:
         type: string
         default: ''
-        required: false  
+        required: false
   workflow_call:
     inputs:
       tag:
