@@ -7,7 +7,7 @@ Simple retry script run action
 The number of attempts is provided as the RETRY_RUN_ATTEMPT environment variable during script execution.
 
 ```yaml
-- uses: srz-zumix/retry-run-action@v0
+- uses: srz-zumix/retry-run-action@v1
   with:
     retry: 5
     run: |
