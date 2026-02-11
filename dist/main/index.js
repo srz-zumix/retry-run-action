@@ -29290,7 +29290,7 @@ function requireExec () {
 var execExports = requireExec();
 
 /**
- * The entrypoint for the post action.
+ * The entrypoint for the main action.
  */
 async function resolveShell() {
     const defaultCommands = {

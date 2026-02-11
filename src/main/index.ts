@@ -1,5 +1,5 @@
 /**
- * The entrypoint for the post action.
+ * The entrypoint for the main action.
  */
 
 import * as core from '@actions/core'
