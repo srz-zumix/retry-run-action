@@ -29233,6 +29233,11 @@ async function runOnce(commandPath, commandArgs, options, attempt) {
     };
     await exec(`"${commandPath}"`, commandArgs, options);
 }
+/**
+ * The main function for the action.
+ *
+ * @returns Resolves when the action is complete.
+ */
 async function run() {
     try {
         const retry = parseInt(getInput('retry'), 10);

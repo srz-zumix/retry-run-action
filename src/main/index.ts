@@ -62,6 +62,11 @@ async function runOnce(
   await exec.exec(`"${commandPath}"`, commandArgs, options)
 }
 
+/**
+ * The main function for the action.
+ *
+ * @returns Resolves when the action is complete.
+ */
 async function run(): Promise<void> {
   try {
     const retry: number = parseInt(core.getInput('retry'), 10)
